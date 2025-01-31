@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import EventItem from './components/EventItem';
+import EventCalendar from './components/EventCalendar';
 import { EventType } from './types';
 
 
@@ -50,6 +51,9 @@ function App() {
               <EventItem event={event} />
             ))
           )}
+          </div>
+          <div className="col-12 col-md-6 col-lg-8">
+            <EventCalendar />
           </div>
         </div>
       </div>
