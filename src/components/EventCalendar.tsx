@@ -16,7 +16,7 @@ const EventCalendar = ({events}: { events: EventType[] }) => {
   const showDayEvent = ({ date }: { date: Date }) => {
       const dayEvents = events.filter(event => formatDate(event.event_date) === formatDate(date));
       if (dayEvents.length === 0) return <div style={{height: "56px"}}></div>;
-      return dayEvents.map(dayEvent => <EventCalendarItem event={dayEvent} />); 
+      return dayEvents.map(dayEvent => <EventCalendarItem event={dayEvent} key={dayEvent.id} />); 
   } 
 
   return (
@@ -25,7 +25,6 @@ const EventCalendar = ({events}: { events: EventType[] }) => {
         className="w-100 h-100 border-0 shadow"
         onChange={onChange}
         value={value}
-        tileClassName="h-50"
         tileContent={showDayEvent}
       />
     </div>
