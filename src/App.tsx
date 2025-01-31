@@ -36,12 +36,12 @@ function App() {
   };
 
   return (
-    <div className="min-vh-100 d-flex flex-column">
+    <div className="min-vh-100 vh-100 d-flex flex-column">
       <AppNavbar />
       <div className="d-none d-lg-flex container-fluid flex-grow-1 d-flex flex-column pb-5">
-        <div className="row flex-grow-1">
+        <div className="row flex-grow-1 my-3">
           <div className="col-12 col-lg-3">
-            <h2 className="mb-3">This week's events</h2>
+            <h2 className="">This week's events</h2>
             {filterNext7DaysEvents(events).length === 0 ? (
               <p>Oops, no events this week...</p>
             ) : (

@@ -19,13 +19,13 @@ const EventItem = ({event}: { event: EventType }) => {
   return (
     <div className="mb-3">
       <div className="card">
-        <div className="card-body">
-          <p className="card-text text-danger">
-            {formatDate(event.event_date)}
+        <div className="card-body p-2">
+          <p className="card-text text-danger mb-1 small">
+            {formatDate(event.event_date)} {event.name.split('| ')[0]}
           </p>
-          <h5 className="card-title mb-3 fs-6">{event.name}</h5>
-          <a href={event.url} style={{width: "fit-content"}} className="btn btn-danger d-flex align-items-center gap-3 p-2">
-            <FontAwesomeIcon className="fs-3" icon={faMeetup} /> <span className="fs-6">Check out the event</span>
+          <h5 className="card-title mb-2 fs-6">{event.name.split('| ')[1]}</h5>
+          <a href={event.url} style={{width: "fit-content"}} className="btn btn-danger d-flex align-items-center gap-1 py-1 p-2">
+            <FontAwesomeIcon className="fs-5" icon={faMeetup} /> <span className="fs-6">Check out the event</span>
           </a>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { EventType } from '../types';
 
 const EventCalendarItem = ({ event }: { event: EventType }) => {
   return (
-    <div className="card m-0" style={{ height: '90%' }}>
+    <div className="card m-0">
       <div className="card-body p-1 text-start">
         <div className="d-flex justify-content-between align-items-center">
           <p className="mb-1 fw-bold">{event.name.slice(1).split('| ')[0]}</p>
