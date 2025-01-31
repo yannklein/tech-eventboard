@@ -10,11 +10,11 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 const EventCalendar = ({events}: { events: EventType[] }) => {
   const [value, onChange] = useState<Value>(new Date());
 
+  const formatDate = (date: Date | string) => 
+    `${new Date(date).getFullYear()}${(new Date(date).getMonth() + 1).toString().padStart(2, '0')}${new Date(date).getDate().toString().padStart(2, '0')}`;
+  
   const showDayEvent = ({ date }: { date: Date }) => {
-      const eventDate = (event: EventType) => (new Date(event?.event_date)).getDate();
-      const today = new Date(date).getDate();
-      console.log(eventDate(events[0]), today);
-      const dayEvents = events.filter(event => eventDate(event) === today)
+      const dayEvents = events.filter(event => formatDate(event.event_date) === formatDate(date));
       return dayEvents.map(dayEvent => <EventItem event={dayEvent} />); 
   } 
 
