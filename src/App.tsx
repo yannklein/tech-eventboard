@@ -19,6 +19,22 @@ function App() {
     getEvents();
   }, []);
 
+  const isSameWeek = (date1: Date, date2: Date) => {
+    const startOfWeek = new Date(date2);
+    startOfWeek.setHours(0, 0, 0, 0);
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Set to Sunday
+  
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(endOfWeek.getDate() + 6); // Set to Saturday
+  
+    return date1 >= startOfWeek && date1 <= endOfWeek;
+  };
+  
+  const filterCurrentWeekEvents = (events: EventType[]) => {
+    const today = new Date();
+    return events.filter(event => isSameWeek(new Date(event.event_date), today));
+  };
+
   return (
     <>
       <Navbar />
@@ -27,9 +43,13 @@ function App() {
         <div className="row">
           <div className="col-12 col-md-6 col-lg-4">
           <h2 className="mb-3">This week's events</h2>
-            {events.map((event) => (
+            { filterCurrentWeekEvents(events).length === 0 ? (
+              <p>Oops, no events this week...</p>
+            ) : (
+            filterCurrentWeekEvents(events).map((event) => (
               <EventItem event={event} />
-            ))}
+            ))
+          )}
           </div>
         </div>
       </div>
