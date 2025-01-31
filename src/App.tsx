@@ -53,7 +53,7 @@ function App() {
           )}
           </div>
           <div className="col-12 col-md-6 col-lg-8">
-            <EventCalendar />
+            <EventCalendar events={events} />
           </div>
         </div>
       </div>
