@@ -20,44 +20,42 @@ function App() {
     getEvents();
   }, []);
 
-  const isSameWeek = (date1: Date, date2: Date) => {
-    const startOfWeek = new Date(date2);
-    startOfWeek.setHours(0, 0, 0, 0);
-    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Set to Sunday
+  const isNext7Days = (eventDate: Date, referenceDate: Date) => {
+    const start = new Date(referenceDate);
+    start.setHours(0, 0, 0, 0); // Normalize to start of the day
   
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(endOfWeek.getDate() + 6); // Set to Saturday
+    const end = new Date(start);
+    end.setDate(end.getDate() + 7); // 7 days from now
   
-    return date1 >= startOfWeek && date1 <= endOfWeek;
+    return eventDate >= start && eventDate < end;
   };
   
-  const filterCurrentWeekEvents = (events: EventType[]) => {
+  const filterNext7DaysEvents = (events: EventType[]) => {
     const today = new Date();
-    return events.filter(event => isSameWeek(new Date(event.event_date), today));
+    return events.filter(event => isNext7Days(new Date(event.event_date), today));
   };
 
   return (
-    <>
+    <div className="min-vh-100 d-flex flex-column">
       <Navbar />
-      <div className="container">
-        <h1 className="text-center my-5">Tokyo tech events calendar</h1>
-        <div className="row">
-          <div className="col-12 col-md-6 col-lg-4">
-          <h2 className="mb-3">This week's events</h2>
-            { filterCurrentWeekEvents(events).length === 0 ? (
-              <p>Oops, no events this week...</p>
-            ) : (
-            filterCurrentWeekEvents(events).map((event) => (
-              <EventItem event={event} />
-            ))
-          )}
+      <div className="container-fluid flex-grow-1 d-flex flex-column pb-5">
+        <div className="row flex-grow-1">
+          <div className="col-12 col-lg-3">
+            <h2 className="mb-3">This week's events</h2>
+            { filterNext7DaysEvents(events).length === 0 ? (
+                <p>Oops, no events this week...</p>
+              ) : (
+              filterNext7DaysEvents(events).map((event) => (
+                <EventItem event={event} />
+              ))
+            )}
           </div>
-          <div className="col-12 col-md-6 col-lg-8">
+          <div className="col-12 col-lg-9">
             <EventCalendar events={events} />
           </div>
         </div>
       </div>
-    </>
+    </ div>
   );
 }
 

@@ -23,9 +23,9 @@ const EventItem = ({event}: { event: EventType }) => {
           <p className="card-text text-danger">
             {formatDate(event.event_date)}
           </p>
-          <h5 className="card-title mb-3">{event.name}</h5>
+          <h5 className="card-title mb-3 fs-6">{event.name}</h5>
           <a href={event.url} style={{width: "fit-content"}} className="btn btn-danger d-flex align-items-center gap-3 p-2">
-            <FontAwesomeIcon className="fs-3" icon={faMeetup} /> Check out the event
+            <FontAwesomeIcon className="fs-3" icon={faMeetup} /> <span className="fs-6">Check out the event</span>
           </a>
         </div>
       </div>
