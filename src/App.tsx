@@ -7,6 +7,7 @@ import { EventType } from './types';
 
 function App() {
   const [events, setEvents] = useState<EventType[]>([]);
+  const [eventLoaded, setEventLoaded] = useState(false);
 
   useEffect(() => {
     const getEvents = async () => {
@@ -14,6 +15,7 @@ function App() {
       const res = await fetch(url);
       const events = await res.json();
       setEvents(events);
+      setEventLoaded(true);
     };
     getEvents();
   }, []);
@@ -43,7 +45,7 @@ function App() {
           <div className="col-12 col-lg-3">
             <h2 className="">This week's events</h2>
             {filterNext7DaysEvents(events).length === 0 ? (
-              <p>Oops, no events this week...</p>
+              eventLoaded ? <p>Oops, no events this week...</p> : <p>Loading events...</p>
             ) : (
               filterNext7DaysEvents(events).map((event) => (
                 <EventItem event={event} key={event.id} />
