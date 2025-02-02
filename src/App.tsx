@@ -30,6 +30,11 @@ function App() {
     return eventDate >= start && eventDate < end;
   };
 
+  const filterfutureEvents = (events: EventType[]) => {
+    const today = new Date();
+    return events.filter((event) => new Date(event.event_date) >= today);
+  };
+
   const filterNext7DaysEvents = (events: EventType[]) => {
     const today = new Date();
     return events.filter((event) =>
@@ -45,7 +50,11 @@ function App() {
           <div className="col-12 col-lg-3">
             <h2 className="">This week's events</h2>
             {filterNext7DaysEvents(events).length === 0 ? (
-              eventLoaded ? <p>Oops, no events this week...</p> : <p>Loading events...</p>
+              eventLoaded ? (
+                <p>Oops, no events this week...</p>
+              ) : (
+                <p>Loading events...</p>
+              )
             ) : (
               filterNext7DaysEvents(events).map((event) => (
                 <EventItem event={event} key={event.id} />
@@ -58,10 +67,14 @@ function App() {
         </div>
       </div>
       <div className="d-lg-none container-fluid">
-        {events.length === 0 ? (
-          <p>Oops, no events this week...</p>
+        {filterfutureEvents(events).length === 0 ? (
+          eventLoaded ? (
+            <p>Oops, no events this week...</p>
+          ) : (
+            <p>Loading events...</p>
+          )
         ) : (
-          events.map((event) => (
+          filterfutureEvents(events).map((event) => (
             <EventItem event={event} key={event.id} />
           ))
         )}
