@@ -4,7 +4,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <HashRouter>
+    <HashRouter basename='/tech-eventboard'>
       <div className="min-vh-100 vh-100 d-flex flex-column">
         <Routes>
           <Route path="/" element={<EventsIndex />} />
