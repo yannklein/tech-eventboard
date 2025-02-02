@@ -4,10 +4,16 @@ import EventCalendar from './EventCalendar';
 import { EventType } from '../types';
 import { useSearchParams } from 'react-router-dom';
 import AppNavbar from './AppNavbar';
+import { capitalize } from '../utils';
+
 
 const EventIndex = () => {
   const [searchParams] = useSearchParams();
   const city = searchParams.get("city") || "tokyo";
+
+  useEffect(() => {
+    document.title = `Tech events in ${capitalize(city)}`;
+  }, [city]);
 
   const [events, setEvents] = useState<EventType[]>([]);
   const [eventLoaded, setEventLoaded] = useState(false);

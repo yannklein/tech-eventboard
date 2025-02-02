@@ -1,9 +1,9 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { capitalize } from '../utils';
 
 const AppNavbar = ({city}: {city: string}) => {
-  const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
   const cityEmoji: Record<string, string> = {
     tokyo: '🗼',
     barcelona: '🥘'
