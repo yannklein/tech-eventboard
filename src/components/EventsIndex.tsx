@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import EventItem from './EventItem';
 import EventCalendar from './EventCalendar';
 import { EventType } from '../types';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import AppNavbar from './AppNavbar';
 
 const EventIndex = () => {
-  // Get the "city" query parameter
-  const [city] = useState(useParams<{ city?: string }>().city || 'Tokyo');
+  const [searchParams] = useSearchParams();
+  const city = searchParams.get("city");
 
   const [events, setEvents] = useState<EventType[]>([]);
   const [eventLoaded, setEventLoaded] = useState(false);
