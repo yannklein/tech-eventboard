@@ -16,8 +16,8 @@ const AppNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="">
-            <Nav.Link href="https://www.lewagon.com/tokyo">LW Tokyo</Nav.Link>
-            <Nav.Link href="https://yannklein.dev/">About Yann</Nav.Link>
+            <Nav.Link href="https://www.lewagon.com/tokyo" target="_blank">LW Tokyo</Nav.Link>
+            <Nav.Link href="https://yannklein.dev/" target="_blank">About Yann</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
