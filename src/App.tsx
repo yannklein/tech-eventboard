@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter basename="/tokyo-tech-eventboard">
+    <BrowserRouter basename="/tech-eventboard">
       <div className="min-vh-100 vh-100 d-flex flex-column">
         <Routes>
           <Route path="/" element={<EventsIndex />} />
