@@ -4,6 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const AppNavbar = ({city}: {city: string}) => {
   const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+  const cityEmoji: Record<string, string> = {
+    tokyo: '🗼',
+    barcelona: '🥘'
+  }
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid className="d-flex ">
@@ -14,7 +18,7 @@ const AppNavbar = ({city}: {city: string}) => {
           />
           <h1 className="mb-0">
             {capitalize(city)} tech events
-            <br className="d-block d-lg-none" /> calendar {city === 'tokyo' ? '🗼' : '🥘'}
+            <br className="d-block d-lg-none" /> calendar { cityEmoji[city] || '🧑‍💻'}
           </h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

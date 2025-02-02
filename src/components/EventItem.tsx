@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeetup } from "@fortawesome/free-brands-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { EventType } from '../types';
-// import ReactHtmlParser from 'react-html-parser';
-
 
 const EventItem = ({event}: { event: EventType }) => {
   
