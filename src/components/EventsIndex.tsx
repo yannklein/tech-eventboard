@@ -5,6 +5,7 @@ import { EventType } from '../types';
 import { useSearchParams } from 'react-router-dom';
 import AppNavbar from './AppNavbar';
 import { capitalize } from '../utils';
+import EventGroups from './EventGroups';
 
 
 const EventIndex = () => {
@@ -57,7 +58,8 @@ const EventIndex = () => {
       <div className="d-none d-lg-flex container-fluid flex-grow-1 d-flex flex-column pb-5">
         <div className="row flex-grow-1 my-3">
           <div className="col-12 col-lg-3">
-            <h2 className="">This week's events</h2>
+            <EventGroups city={city} />
+            <h3 className="mt-4">This week's events</h3>
             {filterNext7DaysEvents(events).length === 0 ? (
               eventLoaded ? (
                 <p>Oops, no events this week...</p>
