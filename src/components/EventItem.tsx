@@ -10,7 +10,10 @@ const EventItem = ({event}: { event: EventType }) => {
       year: "numeric",
       month: "short",
       day: "numeric",
+      timeZone: "UTC",
     });
+    console.log(typeof eventDate, new Date(eventDate), shortDate);
+    
     return shortDate;
 };
 
