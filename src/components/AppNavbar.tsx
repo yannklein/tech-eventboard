@@ -2,11 +2,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { capitalize } from '../utils';
+import tokyoTower from '../assets/tokyo-tower.svg';
+import sagradaFamilia from '../assets/sagrada-familia.png';
 
 const AppNavbar = ({city}: {city: string}) => {
   const cityEmoji: Record<string, string> = {
-    tokyo: '🗼',
-    barcelona: '🥘'
+    tokyo: tokyoTower,
+    barcelona: sagradaFamilia
   }
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -14,11 +16,12 @@ const AppNavbar = ({city}: {city: string}) => {
         <Navbar.Brand href="#" className="d-flex align-items-center gap-2 gap-lg-3">
           <img
             height="64"
-            src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png"
+            src={cityEmoji[city]}
+            alt="logo"
           />
           <h1 className="mb-0">
             {capitalize(city)} tech events
-            <br className="d-block d-lg-none" /> calendar { cityEmoji[city] || '🧑‍💻'}
+            <br className="d-block d-lg-none" /> calendar
           </h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
