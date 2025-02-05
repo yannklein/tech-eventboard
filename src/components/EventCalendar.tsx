@@ -10,11 +10,17 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 const EventCalendar = ({events}: { events: EventType[] }) => {
   const [value, onChange] = useState<Value>(new Date());
 
-  const formatDate = (date: Date | string) => 
-    `${new Date(date).getFullYear()}${(new Date(date).getMonth() + 1).toString().padStart(2, '0')}${new Date(date).getDate().toString().padStart(2, '0')}`;
-  
-  const showDayEvent = ({ date }: { date: Date }) => {
-      const dayEvents = events.filter(event => formatDate(event.event_date) === formatDate(date));
+  const formatMeetupDate = (eventDate: Date) => {
+    return eventDate.toString().split("T")[0];
+  };
+
+  const formatJsDate = (date: Date) => 
+    `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+
+  const showDayEvent = ({ date }: { date: Date }) => {      
+      const dayEvents = events.filter(event => formatMeetupDate(event.event_date) === formatJsDate(date))
+      console.log(date.toISOString().slice(0, 10));
+      
       if (dayEvents.length === 0) return <div style={{height: "56px"}}></div>;
       return dayEvents.map(dayEvent => <EventCalendarItem event={dayEvent} key={dayEvent.id} />); 
   } 
