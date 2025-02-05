@@ -31,7 +31,7 @@ const EventGroups = ({ city }: { city: string }) => {
             Followed Meetups
           </h3>
           </Dropdown.Toggle>
-          <Dropdown.Menu className='shadow border-0'>
+          <Dropdown.Menu className='shadow border-0 w-100 p-0'>
           {!groupLoaded ? (
             <p>Loading groups...</p>
           ) : (

@@ -7,10 +7,9 @@ import AppNavbar from './AppNavbar';
 import { capitalize } from '../utils';
 import EventGroups from './EventGroups';
 
-
 const EventIndex = () => {
   const [searchParams] = useSearchParams();
-  const city = searchParams.get("city") || "tokyo";
+  const city = searchParams.get('city') || 'tokyo';
 
   useEffect(() => {
     document.title = `Tech events in ${capitalize(city)}`;
@@ -78,17 +77,20 @@ const EventIndex = () => {
         </div>
       </div>
       <div className="d-lg-none container-fluid">
-        {filterfutureEvents(events).length === 0 ? (
-          eventLoaded ? (
-            <p>Oops, no events this week...</p>
+        <EventGroups city={city} />
+        <div className='mt-4'>
+          {filterfutureEvents(events).length === 0 ? (
+            eventLoaded ? (
+              <p>Oops, no events this week...</p>
+            ) : (
+              <p>Loading events...</p>
+            )
           ) : (
-            <p>Loading events...</p>
-          )
-        ) : (
-          filterfutureEvents(events).map((event) => (
-            <EventItem event={event} key={event.id} />
-          ))
-        )}
+            filterfutureEvents(events).map((event) => (
+              <EventItem event={event} key={event.id} />
+            ))
+          )}
+        </div>
       </div>
     </>
   );
