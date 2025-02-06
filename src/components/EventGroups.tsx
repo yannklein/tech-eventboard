@@ -4,6 +4,7 @@ import { faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { getGroupURL, getPlatformIcon } from '../utils';
 
 const EventGroups = ({ city }: { city: string }) => {
   const [groups, setGroups] = useState<GroupType[]>([]);
@@ -19,6 +20,10 @@ const EventGroups = ({ city }: { city: string }) => {
     };
     getGroups();
   }, [city]);
+
+  const formatCaption = (caption: string) => {
+    return caption.replace(/\d+/g, '').split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  }
 
   return (
     <Dropdown>
@@ -37,9 +42,9 @@ const EventGroups = ({ city }: { city: string }) => {
           ) : (
             <ListGroup variant="flush">
               {groups.map((group) => (
-                <ListGroup.Item action href={`${group.name}`} key={group.id}>
-                  <FontAwesomeIcon className="fs-5 me-2" icon={faMeetup} />{' '}
-                  {group.name}
+                <ListGroup.Item action href={getGroupURL(group)}  key={group.id} className='d-flex align-items-center gap-1 p-2'>
+                  <img style={{ filter: 'grayscale(100%)'}} height="20" src={getPlatformIcon(group?.platform || 'meetup')} alt="" />{' '}
+                  <span>{formatCaption(group.name)}</span>
                 </ListGroup.Item>
               ))}
             </ListGroup>
