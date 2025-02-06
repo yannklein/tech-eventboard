@@ -20,7 +20,7 @@ const EventCalendarItem = ({ event }: { event: EventType }) => {
   }, [event]);
 
   return (
-    <a href={event.url} className='text-decoration-none w-100'>
+    <a href={event.url} target="_blank" className='text-decoration-none w-100'>
       <div className="card m-0">
         <div className="card-body p-1 text-start">
           <div className="d-flex justify-content-between align-items-center mb-1">
