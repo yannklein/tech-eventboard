@@ -1,26 +1,42 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMeetup } from '@fortawesome/free-brands-svg-icons';
-import { EventType } from '../types';
+import { EventType, GroupType } from '../types';
+import { getPlatformIcon } from '../utils';
+import { useEffect, useState } from 'react';
 
 const EventCalendarItem = ({ event }: { event: EventType }) => {
+  const [group, setGroup] = useState<GroupType>();
+
+  useEffect(() => {
+    const getGroup = async () => {
+      const url = `https://tokyo-events.herokuapp.com/api/groups`;
+      const res = await fetch(url);
+      const groups = await res.json();
+      setGroup(
+        groups.find(
+          (group: GroupType) => group.id === event.tky_even_meetup_id,
+        ),
+      );
+    };
+    getGroup();
+  }, [event]);
+
   return (
-    <div className="card m-0">
-      <div className="card-body p-1 text-start">
-        <div className="d-flex justify-content-between align-items-center">
-          <p className="mb-1 fw-bold">{event.name.slice(1).split('| ')[0]}</p>
-          <a
-            href={event.url}
-            style={{ width: 'fit-content' }}
-            className="btn btn-danger py-0 px-1 ms-1 mb-1"
-          >
-            <FontAwesomeIcon icon={faMeetup} />
-          </a>
+    <a href={event.url} className='text-decoration-none w-100'>
+      <div className="card m-0">
+        <div className="card-body p-1 text-start">
+          <div className="d-flex justify-content-between align-items-center mb-1">
+            <p className="m-0 fw-bold">{event.name.slice(1).split('| ')[0]}</p>
+            <img
+              height="24"
+              src={getPlatformIcon(group?.platform || 'meetup')}
+              alt=""
+            />{' '}
+          </div>
+          <p className="card-text small mb-1 ellipsis">
+            {event.name.split('| ')[1]}
+          </p>
         </div>
-        <p className="card-text small mb-1 ellipsis">
-          {event.name.split('| ')[1]}
-        </p>
       </div>
-    </div>
+    </a>
   );
 };
 

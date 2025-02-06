@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { EventType } from '../types';
+import { EventType, GroupType } from '../types';
+import { useEffect, useState } from 'react';
+
+import { getPlatformIcon } from '../utils';
 
 const EventItem = ({ event }: { event: EventType }) => {
   const formatDate = (eventDate: Date) => {
@@ -13,6 +15,18 @@ const EventItem = ({ event }: { event: EventType }) => {
     });
     return shortDate;
   };
+
+  const [group, setGroup] = useState<GroupType>();
+
+  useEffect(() => {
+    const getGroup = async () => {
+      const url = `https://tokyo-events.herokuapp.com/api/groups`;
+      const res = await fetch(url);
+      const groups = await res.json();
+      setGroup(groups.find((group: GroupType) => group.id === event.tky_even_meetup_id));
+    };
+    getGroup();
+  }, [event]);
 
   return (
     <div className="mb-3">
@@ -28,9 +42,9 @@ const EventItem = ({ event }: { event: EventType }) => {
           <a
             href={event.url}
             style={{ width: 'fit-content' }}
-            className="btn btn-danger d-flex align-items-center gap-1 py-1 p-2"
+            className="btn bg-danger-subtle d-flex align-items-center gap-2 px-2 py-1"
           >
-            <FontAwesomeIcon className="fs-5" icon={faMeetup} />{' '}
+            <img height="24" src={getPlatformIcon(group?.platform || 'meetup')} alt="" />{' '}
             <span className="fs-6">Check out the event</span>
           </a>
         </div>

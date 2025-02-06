@@ -28,10 +28,11 @@ const EventCalendar = ({events}: { events: EventType[] }) => {
   return (
     <div className="w-100 h-100">
       <Calendar
-        className="w-100 h-100 border-0 shadow"
+        className="w-100 h-100 border-0 shadow px-1"
         onChange={onChange}
         value={value}
         tileContent={showDayEvent}
+        tileClassName={() => "d-flex flex-column justify-content-start align-items-center gap-1"}
       />
     </div>
   );
