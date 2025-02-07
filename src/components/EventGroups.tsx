@@ -43,7 +43,7 @@ const EventGroups = ({ city }: { city: string }) => {
             <ListGroup variant="flush">
               {groups.map((group) => (
                 <ListGroup.Item action href={getGroupURL(group)} target='_blank'  key={group.id} className='d-flex align-items-center gap-1 p-2'>
-                  <img style={{ filter: 'grayscale(100%)'}} height="20" src={getPlatformIcon(group?.platform || 'meetup')} alt="" />{' '}
+                  <img style={{ filter: 'grayscale(100%)'}} height="20" width="20" src={getPlatformIcon(group?.platform || 'meetup')} alt="" />{' '}
                   <span>{formatCaption(group.name)}</span>
                 </ListGroup.Item>
               ))}
