@@ -29,26 +29,9 @@ const EventIndex = () => {
     getEvents();
   }, [city]);
 
-  const isNext7Days = (eventDate: Date, referenceDate: Date) => {
-    const start = new Date(referenceDate);
-    start.setHours(0, 0, 0, 0); // Normalize to start of the day
-
-    const end = new Date(start);
-    end.setDate(end.getDate() + 7); // 7 days from now
-
-    return eventDate >= start && eventDate < end;
-  };
-
   const filterfutureEvents = (events: EventType[]) => {
     const today = new Date();
     return events.filter((event) => new Date(event.event_date) >= today);
-  };
-
-  const filterNext7DaysEvents = (events: EventType[]) => {
-    const today = new Date();
-    return events.filter((event) =>
-      isNext7Days(new Date(event.event_date), today),
-    );
   };
 
   return (
@@ -58,15 +41,15 @@ const EventIndex = () => {
         <div className="row flex-grow-1 my-3">
           <div className="col-12 col-lg-3">
             <EventGroups city={city} />
-            <h3 className="mt-4">This week's events</h3>
-            {filterNext7DaysEvents(events).length === 0 ? (
+            <h3 className="mt-4">Events coming up</h3>
+            {filterfutureEvents(events).length === 0 ? (
               eventLoaded ? (
                 <p>Oops, no events this week...</p>
               ) : (
                 <p>Loading events...</p>
               )
             ) : (
-              filterNext7DaysEvents(events).map((event) => (
+              filterfutureEvents(events).slice(0,6).map((event) => (
                 <EventItem event={event} key={event.id} />
               ))
             )}
