@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { GroupType } from '../types';
-import { faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { getGroupURL, getPlatformIcon } from '../utils';
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
 
 const EventGroups = ({ city }: { city: string }) => {
   const [groups, setGroups] = useState<GroupType[]>([]);
@@ -30,10 +30,10 @@ const EventGroups = ({ city }: { city: string }) => {
       <Dropdown.Toggle split variant='white' className="w-100 d-flex align-items-center justify-content-between gap-3 border rounded" >
           <h3 className="fs-5 fw-medium d-flex align-items-center m-0">
             <FontAwesomeIcon
-              className="fs-1 me-2 text-danger"
-              icon={faMeetup}
+              className="fs-4 me-2 text-danger"
+              icon={faCalendarCheck}
             />{' '}
-            Followed Meetups
+            Followed event groups
           </h3>
           </Dropdown.Toggle>
           <Dropdown.Menu className='shadow border-0 w-100 p-0'>
