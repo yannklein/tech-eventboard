@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useReducer } from "react";
 
 const messages = [
-  ["Waking up Heroku dyno", "😴"],
+  ["Waking up the app", "😴"],
   ["Curating the best tech events","🧐"],
-  ["Refining the UI and...","🎨"],
-  ["Refining the UI and...","🎨"],
+  ["Refining the UI and... ","🎨"],
+  ["Refining the UI and...","✨"],
  [ "Ready!","🚀"],
 ];
 
@@ -34,7 +34,7 @@ const EventLoadingMessage = () => {
 
     const interval = setInterval(() => {
       dispatch({ type: "NEXT" });
-    }, 2000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, [state.isRunning]);
