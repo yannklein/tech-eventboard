@@ -1,6 +1,6 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer } from "react";
 
 const messages = [
   ["Waking up Heroku dyno", "😴"],
