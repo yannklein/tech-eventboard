@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import AppNavbar from './AppNavbar';
 import { capitalize } from '../utils';
 import EventGroups from './EventGroups';
+import EventLoadingMessage from './EventLoadingMessage';
 
 const EventIndex = () => {
   const [searchParams] = useSearchParams();
@@ -46,7 +47,7 @@ const EventIndex = () => {
               eventLoaded ? (
                 <p>Oops, no events this week...</p>
               ) : (
-                <p>Loading events...</p>
+                <EventLoadingMessage />
               )
             ) : (
               filterfutureEvents(events).slice(0,6).map((event) => (
@@ -66,7 +67,7 @@ const EventIndex = () => {
             eventLoaded ? (
               <p>Oops, no events this week...</p>
             ) : (
-              <p>Loading events...</p>
+              <EventLoadingMessage />
             )
           ) : (
             filterfutureEvents(events).map((event) => (

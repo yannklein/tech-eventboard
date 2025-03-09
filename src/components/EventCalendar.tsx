@@ -19,7 +19,6 @@ const EventCalendar = ({events}: { events: EventType[] }) => {
 
   const showDayEvent = ({ date }: { date: Date }) => {      
       const dayEvents = events.filter(event => formatMeetupDate(event.event_date) === formatJsDate(date))
-      console.log(date.toISOString().slice(0, 10));
       
       if (dayEvents.length === 0) return <div style={{height: "56px"}}></div>;
       return dayEvents.map(dayEvent => <EventCalendarItem event={dayEvent} key={dayEvent.id} />); 
