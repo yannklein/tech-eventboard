@@ -26,7 +26,7 @@ const AppNavbar = ({ city }: { city: string }) => {
             src={cityEmoji[city] || tokyoTower}
             alt={`${capitalizedCity} logo`}
           />
-          <h1 className="mb-0">
+          <h1 className="mb-0 fs-2 fs-lg-1">
             {capitalizedCity} tech events
             <br className="d-block d-lg-none" /> calendar
           </h1>
