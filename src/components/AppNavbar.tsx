@@ -33,15 +33,16 @@ const AppNavbar = ({ city }: { city: string }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-          <Nav>
+          <Nav className='d-flex flex-row gap-3 mt-3 align-items-center'>
+            <div className='nav-link bg-secondary-subtle rounded-2 px-3 me-3'>About the author</div>
             <Nav.Link
               href="https://www.linkedin.com/in/yann-klein/"
               target="_blank"
             >
-              <FontAwesomeIcon className="fs-4" icon={faLinkedin} />
+              <FontAwesomeIcon className="fs-1" icon={faLinkedin} />
             </Nav.Link>
             <Nav.Link href="https://github.com/yannklein" target="_blank">
-              <FontAwesomeIcon className="fs-4" icon={faGithub} />
+              <FontAwesomeIcon className="fs-1" icon={faGithub} />
             </Nav.Link>
             <Nav.Link
               href="https://yannklein.dev/"
