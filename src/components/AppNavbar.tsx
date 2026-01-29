@@ -34,7 +34,7 @@ const AppNavbar = ({ city }: { city: string }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav className='d-flex flex-row gap-3 mt-3 align-items-center'>
-            <div className='nav-link bg-secondary-subtle rounded-2 px-3 me-3'>About the author</div>
+            <div className='d-sm-none nav-link bg-secondary-subtle rounded-2 px-3 me-3'>About the author</div>
             <Nav.Link
               href="https://www.linkedin.com/in/yann-klein/"
               target="_blank"
@@ -48,6 +48,7 @@ const AppNavbar = ({ city }: { city: string }) => {
               href="https://yannklein.dev/"
               target="_blank"
               rel="noopener noreferrer"
+              className="fs-5"
             >
               Portfolio
             </Nav.Link>
