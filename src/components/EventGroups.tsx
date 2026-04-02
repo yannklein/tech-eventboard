@@ -12,7 +12,8 @@ const EventGroups = ({ city }: { city: string }) => {
 
   useEffect(() => {
     const getGroups = async () => {
-      const url = `https://tokyo-events.herokuapp.com/api/groups?city=${city}`;
+      // const url = `https://tokyo-events.herokuapp.com/api/groups?city=${city}`;
+      const url = `https://stadium-pretty-skins-python.trycloudflare.com//api/groups?city=${city}`;
       const res = await fetch(url);
       const events = await res.json();
       setGroups(events);

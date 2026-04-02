@@ -20,7 +20,8 @@ const EventItem = ({ event }: { event: EventType }) => {
 
   useEffect(() => {
     const getGroup = async () => {
-      const url = `https://tokyo-events.herokuapp.com/api/groups`;
+      // const url = `https://tokyo-events.herokuapp.com/api/groups`;
+      const url = `https://stadium-pretty-skins-python.trycloudflare.com//api/groups`;
       const res = await fetch(url);
       const groups = await res.json();
       setGroup(groups.find((group: GroupType) => group.id === event.tky_even_meetup_id));
