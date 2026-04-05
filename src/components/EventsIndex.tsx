@@ -22,7 +22,7 @@ const EventIndex = () => {
   useEffect(() => {
     const getEvents = async () => {
       // const url = `https://tokyo-events.herokuapp.com/api/events?city=${city}`;
-      const url = `https://stadium-pretty-skins-python.trycloudflare.com/api/events?city=${city}`;
+      const url = `https://tech-events-api.yannklein.dev/api/events?city=${city}`;
       const res = await fetch(url);
       const events = await res.json();
       setEvents(events);
