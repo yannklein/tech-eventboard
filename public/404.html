@@ -1,13 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 Page Not Found</title>
+  <title>404 — Event Not Found</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --glitch-color: #0d6efd;
+      --glitch-alt: #dc3545;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+
+    /* ── Navbar matching app style ── */
+    .site-navbar {
+      background-color: var(--bs-tertiary-bg);
+      border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    /* ── 404 hero ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    /* ── Glitch digit ── */
+    .glitch-wrap {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .glitch {
+      font-size: clamp(6rem, 22vw, 14rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--bs-body-color);
+      position: relative;
+      display: inline-block;
+      animation: glitch-main 4s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+    }
+
+    .glitch::before {
+      color: var(--glitch-color);
+      clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+      animation: glitch-before 4s infinite;
+      opacity: 0;
+    }
+
+    .glitch::after {
+      color: var(--glitch-alt);
+      clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+      animation: glitch-after 4s infinite;
+      opacity: 0;
+    }
+
+    @keyframes glitch-main {
+      0%, 90%, 100% { transform: none; }
+      91%           { transform: skewX(-2deg); }
+      93%           { transform: skewX(2deg); }
+      95%           { transform: none; }
+    }
+
+    @keyframes glitch-before {
+      0%, 88%, 100% { opacity: 0; transform: none; }
+      89%           { opacity: 0.8; transform: translate(-4px, -2px); }
+      91%           { opacity: 0.8; transform: translate(4px, 2px); }
+      93%           { opacity: 0; }
+    }
+
+    @keyframes glitch-after {
+      0%, 88%, 100% { opacity: 0; transform: none; }
+      90%           { opacity: 0.6; transform: translate(4px, 2px); }
+      92%           { opacity: 0.6; transform: translate(-4px, -2px); }
+      94%           { opacity: 0; }
+    }
+
+    /* ── Terminal block ── */
+    .terminal {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 0.75rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      max-width: 440px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red    { background: #f38ba8; }
+    .dot-yellow { background: #f9e2af; }
+    .dot-green  { background: #a6e3a1; }
+
+    .terminal-line { margin: 0; line-height: 1.7; }
+    .t-dim  { color: #585b70; }
+    .t-blue { color: #89b4fa; }
+    .t-red  { color: #f38ba8; }
+    .t-grn  { color: #a6e3a1; }
+    .t-ylw  { color: #f9e2af; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: #cdd6f4;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ── Tower emoji pulse ── */
+    .tower-emoji {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      display: inline-block;
+      animation: tower-float 3s ease-in-out infinite;
+    }
+
+    @keyframes tower-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* ── Social links ── */
+    .social-icon {
+      font-size: 1.6rem;
+      color: var(--bs-body-color);
+      opacity: 0.7;
+      transition: opacity .2s, transform .2s;
+    }
+    .social-icon:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+      color: var(--bs-body-color);
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <nav class="site-navbar py-2">
+    <div class="container-fluid d-flex align-items-center gap-3 px-4">
+      <span class="tower-emoji">🗼</span>
+      <span class="fs-4 fw-bold">Tech Events Calendar</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <main class="hero">
+    <div class="text-center">
+
+      <!-- Glitch 404 -->
+      <div class="glitch-wrap mb-3">
+        <span class="glitch" data-text="404">404</span>
+      </div>
+
+      <!-- Tagline -->
+      <h2 class="fw-semibold mb-1">Event not found</h2>
+      <p class="text-body-secondary mb-4">
+        Looks like this page got lost in the calendar&nbsp;🗓️<br>
+        It was either cancelled, moved, or never existed.
+      </p>
+
+      <!-- Terminal block -->
+      <div class="terminal mx-auto mb-5">
+        <div class="terminal-dots">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <p class="terminal-line"><span class="t-dim">$</span> <span class="t-blue">fetch</span> <span class="t-ylw">--city tokyo</span> <span class="t-grn">--path</span> <span>"<span id="path-display"></span>"</span></p>
+        <p class="terminal-line t-red">✗ 404 — No event found at this URL</p>
+        <p class="terminal-line t-dim">   Try navigating back to the event board</p>
+        <p class="terminal-line"><span class="t-dim">$</span> <span class="cursor"></span></p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="d-flex flex-wrap gap-3 justify-content-center mb-5">
+        <a href="/tech-eventboard/" class="btn btn-primary px-4">
+          <i class="fa-solid fa-calendar-days me-2"></i>Back to events
+        </a>
+        <a href="https://yannklein.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary px-4">
+          Portfolio
+        </a>
+      </div>
+
+      <!-- Social icons -->
+      <div class="d-flex justify-content-center gap-4">
+        <a href="https://github.com/yannklein" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github social-icon"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/yann-klein/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin social-icon"></i>
+        </a>
+        <a href="https://yannklein.dev/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+          <i class="fa-solid fa-globe social-icon"></i>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
   <script>
-    window.location.replace("/tech-eventboard/");
+    // Show the bad path in the terminal
+    const el = document.getElementById('path-display');
+    if (el) el.textContent = window.location.pathname;
   </script>
 </body>
 </html>
